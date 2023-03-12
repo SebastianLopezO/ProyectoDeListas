@@ -48,5 +48,5 @@ Este proyecto consiste principalmente en las formas de interactuar con una lista
 
 💻 Programmers / Programadores
 
-| [<img src="https://avatars.githubusercontent.com/u/100486485?v=4" width="100px;"/><br /><sub><b>Sebastian Lopez O</b></sub>](https://github.com/SebastianLopezO) | [<img src="https://avatars.githubusercontent.com/u/127691495?v=4" width="100px;"/><br /><sub><b>Sara Munera</b></sub>](https://github.com/Sarix24) |
-|:----------------------------------------------------------------------------------------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------------------------------------------------------:|
+| [<img src="https://avatars.githubusercontent.com/u/100486485?v=4" width="100px;"/><br /><sub><b>Sebastian Lopez O</b></sub>](https://github.com/SebastianLopezO) | [<img src="https://avatars.githubusercontent.com/u/127691495?v=4" width="100px;"/><br /><sub><b>Sara Munera O</b></sub>](https://github.com/Sarix24) |
+|:----------------------------------------------------------------------------------------------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------------------------------------------------------------------:|
