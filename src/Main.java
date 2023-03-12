@@ -74,6 +74,27 @@ public class Main {
         return Option;
     }
 
+    public static String MenuVal(){
+        String[] Options = {    "ListaA",
+                "ListaB",
+                "ListaC",
+                "ListaD",
+                "ListaAns",
+                "Operacion entre Listas",
+                "Salir"
+        };
+
+        String Option =  (String) JOptionPane.showInputDialog(
+                null,
+                "Seleccione la lista: ",
+                "Variables",
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                Options,
+                Options[0]);
+        return Option;
+    }
+
     public static String MenuOrder(){
         String[] Options = {    "Ascendente",
                                 "Descendente"
