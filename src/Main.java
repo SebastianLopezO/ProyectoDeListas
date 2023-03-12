@@ -1,5 +1,9 @@
+import javax.swing.*;
+
 public class Main {
     public static void main(String[] args) {
+        boolean app=true;
+        String Option,OptionOrder,OptionOpe,OptionAct;
 
         Lista ListA=new Lista();
         Lista ListB=new Lista();
@@ -7,7 +11,16 @@ public class Main {
         Lista ListD=new Lista();
         Lista ListAns=new Lista();
 
-        System.out.println("Hello world!");
+        do {
+            Option=Menu();
+            switch (Option){
+                case "Ingresar Ordenado":
+                    break;
+                default:
+                    System.out.println("Opcion Incorrecta");
+                    break;
+            }
+        }while (app);
     }
 
     public static String Menu(){
@@ -19,14 +32,32 @@ public class Main {
                                 "Operacion Con Listas",
                                 "Salir"
                             };
-        return "hola";
+
+        String Option =  (String) JOptionPane.showInputDialog(
+                null,
+                "Seleccione la Opcion: ",
+                "Menu",
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                Options,
+                Options[0]);
+        return Option;
     }
 
     public static String MenuOrder(){
         String[] Options = {    "Ascendente",
                                 "Descendente"
                             };
-        return "hola";
+
+        String Option =  (String) JOptionPane.showInputDialog(
+                null,
+                "Seleccione la Opcion: ",
+                "Ordenar",
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                Options,
+                Options[0]);
+        return Option;
     }
 
     public static String MenuActions(){
@@ -34,7 +65,15 @@ public class Main {
                                 "Reemplazar",
                                 "Mostrar"
                             };
-        return "hola";
+        String Option =  (String) JOptionPane.showInputDialog(
+                null,
+                "Seleccione la Opcion: ",
+                "Acciones",
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                Options,
+                Options[0]);
+        return Option;
     }
 
     public static String MenuOperate(){
@@ -43,7 +82,15 @@ public class Main {
                                 "Multiplicación",
                                 "División"
                             };
-        return "hola";
+        String Option =  (String) JOptionPane.showInputDialog(
+                null,
+                "Seleccione la Opcion: ",
+                "Operaciones",
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                Options,
+                Options[0]);
+        return Option;
     }
 
 }

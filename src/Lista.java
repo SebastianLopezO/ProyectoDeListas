@@ -1,4 +1,5 @@
 public class Lista {
+    //Atributos
     private Nodo Punta;
     private Nodo Cola;
 
@@ -24,4 +25,6 @@ public class Lista {
     public void setCola(Nodo cola) {
         Cola = cola;
     }
+
+    //Metodos
 }

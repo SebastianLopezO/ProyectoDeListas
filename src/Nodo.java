@@ -1,4 +1,5 @@
 public class Nodo {
+    //Atributos
     private int Dato;
     private Nodo LigaI;
     private Nodo LigaD;
@@ -35,4 +36,6 @@ public class Nodo {
     public void setLigaD(Nodo ligaD) {
         LigaD = ligaD;
     }
+
+    //Metodos
 }
