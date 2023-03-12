@@ -2,24 +2,55 @@ import javax.swing.*;
 
 public class Main {
     public static void main(String[] args) {
-        boolean app=true;
-        String Option,OptionOrder,OptionOpe,OptionAct;
+        boolean app=true,action=true;
+        String OptionP,Option,OptionOrder,OptionOpe,OptionAct;
 
+        //Listas
         Lista ListA=new Lista();
         Lista ListB=new Lista();
         Lista ListC=new Lista();
         Lista ListD=new Lista();
         Lista ListAns=new Lista();
 
+        //Puntero
+        Lista L=null;
+
         do {
-            Option=Menu();
-            switch (Option){
-                case "Ingresar Ordenado":
+            action=true;
+            OptionP=MenuVal();
+            switch (OptionP){
+                case "ListA":
+                    L=ListA;
+                    break;
+                case "ListB":
+                    L=ListA;
+                    break;
+                case "ListC":
+                    L=ListA;
+                    break;
+                case "ListD":
+                    L=ListA;
                     break;
                 default:
-                    System.out.println("Opcion Incorrecta");
+                    System.out.println("Variable no reconocida");
+                    action=false;
                     break;
             }
+            while (action){
+                Option=Menu();
+                switch (Option){
+                    case "Ingresar Ordenado":
+                        break;
+                    case "Volver":
+                        action=false;
+                        break;
+
+                    default:
+                        System.out.println("Opcion Incorrecta");
+                        break;
+                }
+            }
+
         }while (app);
     }
 
@@ -29,8 +60,7 @@ public class Main {
                                 "Ingresar al Inicio",
                                 "Ordenar Lista",
                                 "Mostrar Lista",
-                                "Operacion Con Listas",
-                                "Salir"
+                                "Volver"
                             };
 
         String Option =  (String) JOptionPane.showInputDialog(
