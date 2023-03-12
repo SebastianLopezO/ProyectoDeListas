@@ -23,13 +23,16 @@ public class Main {
                     L=ListA;
                     break;
                 case "ListB":
-                    L=ListA;
+                    L=ListB;
                     break;
                 case "ListC":
-                    L=ListA;
+                    L=ListC;
                     break;
                 case "ListD":
-                    L=ListA;
+                    L=ListD;
+                    break;
+                case "ListAns":
+                    L=ListAns;
                     break;
                 default:
                     System.out.println("Variable no reconocida");
