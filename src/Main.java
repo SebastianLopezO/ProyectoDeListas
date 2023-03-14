@@ -57,7 +57,9 @@ public class Main {
                     case "Ordenar Lista":
                         break;
                     case "Mostrar Lista":
+                        L.ShowListDetails();
                         L.ShowList();
+                        L.ShowListHtml();
                         break;
                     case "Volver":
                         action=false;
@@ -72,7 +74,8 @@ public class Main {
     }
 
     public static String Menu(){
-        String[] Options = {    "Insertar Ordenado",
+        String[] Options = {    "Insertar al Final",
+                                "Insertar Ordenado",
                                 "Insertar al Final",
                                 "Insertar al Inicio",
                                 "Ordenar Lista",
