@@ -119,7 +119,7 @@ public class Lista {
                             "<td class=\"green\">"+P.getLigaD()+"</td>"+
                         "</tr>"+
                     "</table>"+
-                    "<div class=\"flecha\">&#10140;</div>";
+                    "<div class=\"flecha\">&#8693;</div>";
             P=P.getLigaD();
             if(P==Punta){
                 Spin=false;
