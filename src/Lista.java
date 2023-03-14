@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.swing.text.html.HTMLEditorKit;
 import java.awt.*;
 
 public class Lista {
@@ -82,11 +83,12 @@ public class Lista {
     public void ShowListHtml(){
         //Contenedor html
         JEditorPane editorPane = new JEditorPane();
-        editorPane.setSize(500, 500);
+        editorPane.setEditorKit(new HTMLEditorKit());
+        editorPane.setSize(1300, 700);
         editorPane.setLocation(50, 50);
         editorPane.setContentType("text/html");
         JScrollPane scrollPane = new JScrollPane(editorPane);
-        scrollPane.setPreferredSize(new Dimension(400, 400));
+        scrollPane.setPreferredSize(new Dimension(1300, 700));
         //Jframe
         JFrame frame = new JFrame("Lista");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -94,26 +96,36 @@ public class Lista {
         frame.pack();
 
         //Encabezado y Estilo
-        String html = /*Definicion*/"<!DOCTYPE html><html><head>" +
-                /*Estilos*/"<style>.body{display:flex;justify-content: center;width: 100%;}.nodo{display:flex;align-items:center;justify-content:space-between;width:100px;height:50px;border:2px solid black;border-radius:5px;padding:5px;font-size:20px;font-weight:bold;}.liga-izquierda{display:flex;align-items:center;justify-content:center;width:20px;height:20px;background-color:yellow;border-radius:5px;}.liga-derecha{display:flex;align-items:center;justify-content:center;width:20px;height:20px;background-color:green;border-radius:5px;}.flecha{width: 50px;height: 50px;border: 2px solid black;border-radius: 50%;font-size: 24px;font-weight: bold;display: flex;align-items: center;justify-content: center;}</style>"+
-                /*Head*/"</head><body>";
+        String html = /*Definicion*/"<html><head>" +
+                /*Estilos*/"<style>.container{display:flex;overflow-x:scroll;}\n" +
+                "table{border-collapse:collapse;width:auto;margin:10px;}\n" +
+                "td{border:1px solid #000;padding:10px;}\n" +
+                ".transparent{border:transparent;font-size:12px;}\n" +
+                ".green{background-color:green;color:#fff;font-size:12px;}\n" +
+                ".yellow{background-color:yellow;color:#000;font-size:30px;}\n" +
+                ".flecha{width:50px;height:100px;font-size:24px;border-color:#000;font-weight:bold;display:flex;align-items:center;justify-content:center;}</style>"+
+                /*Head*/"</head><body><div class=\"container\">";
 
         Nodo P=this.Punta;
         boolean Spin=true;
         while (Spin && Punta!=null){
-            html += "<div class=\"nodo\">"+
-                        "<div class=\"liga-izquierda\">"+P.getLigaI()+"</div>"+
-                        "<div class=\"dato\">"+P.getDato()+"</div>"+
-                        "<div class=\"liga-derecha\">"+P.getLigaD()+"</div>"+
-                    "</div>"+
+            html += "<table>"+
+                        "<tr>"+
+                            "<td class=\"transparent\">"+P+"</td>"+
+                        "</tr>"+
+                        "<tr>"+
+                            "<td class=\"green\">"+P.getLigaI()+"</td>"+
+                            "<td class=\"yellow\">"+P.getDato()+"</td>"+
+                            "<td class=\"green\">"+P.getLigaD()+"</td>"+
+                        "</tr>"+
+                    "</table>"+
                     "<div class=\"flecha\">&#10140;</div>";
-
             P=P.getLigaD();
             if(P==Punta){
                 Spin=false;
             }
         }
-        html += " </body></html>";
+        html += "</div></body></html>";
         //Creacion de Panel
         editorPane.setText(html);
         frame.setVisible(true);
