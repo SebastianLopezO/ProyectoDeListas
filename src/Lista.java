@@ -87,7 +87,7 @@ public class Lista {
         editorPane.setSize(1300, 700);
         editorPane.setLocation(50, 50);
         editorPane.setContentType("text/html");
-        JScrollPane scrollPane = new JScrollPane(editorPane);
+        JScrollPane scrollPane = new JScrollPane(editorPane, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
         scrollPane.setPreferredSize(new Dimension(1300, 700));
         //Jframe
         JFrame frame = new JFrame("Lista");
