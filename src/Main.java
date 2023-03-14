@@ -34,6 +34,11 @@ public class Main {
                 case "ListAns":
                     L=ListAns;
                     break;
+                case "Salir":
+                    System.out.println("Hasta luego, vuelva pronto");
+                    action=false;
+                    app=false;
+                    break;
                 default:
                     System.out.println("Variable no reconocida");
                     action=false;
@@ -42,12 +47,21 @@ public class Main {
             while (action){
                 Option=Menu();
                 switch (Option){
-                    case "Ingresar Ordenado":
+                    case "Insertar Ordenado":
+                        break;
+                    case "Insertar al Final":
+                        L.InsertEnd(GetNum());
+                        break;
+                    case "Insertar al Inicio":
+                        break;
+                    case "Ordenar Lista":
+                        break;
+                    case "Mostrar Lista":
+                        L.ShowList();
                         break;
                     case "Volver":
                         action=false;
                         break;
-
                     default:
                         System.out.println("Opcion Incorrecta");
                         break;
@@ -58,9 +72,9 @@ public class Main {
     }
 
     public static String Menu(){
-        String[] Options = {    "Ingresar Ordenado",
-                                "Ingresar al Final",
-                                "Ingresar al Inicio",
+        String[] Options = {    "Insertar Ordenado",
+                                "Insertar al Final",
+                                "Insertar al Inicio",
                                 "Ordenar Lista",
                                 "Mostrar Lista",
                                 "Volver"
@@ -78,11 +92,11 @@ public class Main {
     }
 
     public static String MenuVal(){
-        String[] Options = {    "ListaA",
-                "ListaB",
-                "ListaC",
-                "ListaD",
-                "ListaAns",
+        String[] Options = {    "ListA",
+                "ListB",
+                "ListC",
+                "ListD",
+                "ListAns",
                 "Operacion entre Listas",
                 "Salir"
         };
@@ -145,6 +159,18 @@ public class Main {
                 Options,
                 Options[0]);
         return Option;
+    }
+
+    public static int GetNum(){
+        int num;
+        while (true){
+            try {
+                num = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el Numero a Insertar: "));
+                return num;
+            } catch (NumberFormatException ex) {
+                System.out.println("No ha insertado un numero, error"+ex);
+            }
+        }
     }
 
 }
