@@ -80,7 +80,7 @@ public class Lista {
     }
 
     public void ShowListHtml(){
-        //Contenedor Html
+        //Contenedor html
         JEditorPane editorPane = new JEditorPane();
         editorPane.setSize(500, 500);
         editorPane.setLocation(50, 50);
