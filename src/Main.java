@@ -5,12 +5,15 @@ public class Main {
         boolean app=true,action=true;
         String OptionP,Option,OptionOrder,OptionOpe,OptionAct;
 
+        //Archivo
+        Html FileProyect=new Html();
+
         //Listas
-        Lista ListA=new Lista();
-        Lista ListB=new Lista();
-        Lista ListC=new Lista();
-        Lista ListD=new Lista();
-        Lista ListAns=new Lista();
+        Lista ListA=new Lista("ListA");
+        Lista ListB=new Lista("ListB");
+        Lista ListC=new Lista("ListC");
+        Lista ListD=new Lista("ListD");
+        Lista ListAns=new Lista("ListAns");
 
         //Puntero
         Lista L=null;
@@ -36,6 +39,13 @@ public class Main {
                     break;
                 case "Salir":
                     System.out.println("Hasta luego, vuelva pronto");
+                    //Exportacion
+                    FileProyect.AddBody(ListA.ExportListHtml());
+                    FileProyect.AddBody(ListB.ExportListHtml());
+                    FileProyect.AddBody(ListC.ExportListHtml());
+                    FileProyect.AddBody(ListD.ExportListHtml());
+                    FileProyect.AddBody(ListAns.ExportListHtml());
+                    FileProyect.Export("Memory");
                     action=false;
                     app=false;
                     break;

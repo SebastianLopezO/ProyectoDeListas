@@ -6,10 +6,13 @@ public class Lista {
     //Atributos
     private Nodo Punta;
     private Nodo Cola;
+    public String Name,Method;
 
-    public Lista(){
+    public Lista(String Name){
         this.Punta=null;
         this.Cola=null;
+        this.Name=Name;
+        this.Method="empty";
     }
 
     //Getters and Setters
@@ -81,33 +84,52 @@ public class Lista {
     }
 
     public void ShowListHtml(){
-        //Contenedor html
-        JEditorPane editorPane = new JEditorPane();
-        editorPane.setEditorKit(new HTMLEditorKit());
-        editorPane.setSize(1300, 700);
-        editorPane.setLocation(50, 50);
-        editorPane.setContentType("text/html");
-        JScrollPane scrollPane = new JScrollPane(editorPane, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-        scrollPane.setPreferredSize(new Dimension(1300, 700));
-        //Jframe
-        JFrame frame = new JFrame("Lista");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.getContentPane().add(scrollPane);
-        frame.pack();
-
         //Encabezado y Estilo
-        String html = /*Definicion*/"<html><head>" +
-                /*Estilos*/"<style>.container{display:flex;overflow-x:scroll;}\n" +
-                "table{border-collapse:collapse;width:auto;margin:10px;}\n" +
-                "td{border:1px solid #000;padding:10px;}\n" +
-                ".transparent{border:transparent;font-size:12px;}\n" +
-                ".green{background-color:green;color:#fff;font-size:12px;}\n" +
-                ".yellow{background-color:yellow;color:#000;font-size:30px;}\n" +
-                ".flecha{width:50px;height:100px;font-size:24px;border-color:#000;font-weight:bold;display:flex;align-items:center;justify-content:center;}</style>"+
-                /*Head*/"</head><body><div class=\"container\">";
+        String list = "";
 
         Nodo P=this.Punta;
         boolean Spin=true;
+        list+="<div class=\"container\">" +
+                "<div class=\"container-title\">"+
+                "<div class=\"title\">"+Name+"</div>"+
+                "<div class=\"text\">"+Method+"</div>"+
+                "</div>";
+
+        while (Spin && Punta!=null){
+            list += "<table>"+
+                    "<tr>"+
+                    "<td class=\"transparent\">"+P+"</td>"+
+                    "</tr>"+
+                    "<tr>"+
+                    "<td class=\"green\">"+P.getLigaI()+"</td>"+
+                    "<td class=\"yellow\">"+P.getDato()+"</td>"+
+                    "<td class=\"green\">"+P.getLigaD()+"</td>"+
+                    "</tr>"+
+                    "</table>"+
+                    "<div class=\"flecha\">&#8646;</div>";
+            P=P.getLigaD();
+            if(P==Punta){
+                Spin=false;
+            }
+        }
+        list += "</div>";
+        Html File=new Html();
+        File.AddBody(list);
+        File.Export(Name);
+
+    }
+
+    public String ExportListHtml(){
+        String html = "";
+
+        Nodo P=this.Punta;
+        boolean Spin=true;
+        html+="<div class=\"container\">" +
+                    "<div class=\"container-title\">"+
+                        "<div class=\"title\">"+Name+"</div>"+
+                        "<div class=\"text\">"+Method+"</div>"+
+                    "</div>";
+
         while (Spin && Punta!=null){
             html += "<table>"+
                         "<tr>"+
@@ -119,15 +141,13 @@ public class Lista {
                             "<td class=\"green\">"+P.getLigaD()+"</td>"+
                         "</tr>"+
                     "</table>"+
-                    "<div class=\"flecha\">&#8693;</div>";
+                    "<div class=\"flecha\">&#8646;</div>";
             P=P.getLigaD();
             if(P==Punta){
                 Spin=false;
             }
         }
-        html += "</div></body></html>";
-        //Creacion de Panel
-        editorPane.setText(html);
-        frame.setVisible(true);
+        html += "</div>";
+        return html;
     }
 }
