@@ -11,6 +11,11 @@ public class Nodo {
         this.LigaD=null;
     }
 
+    public Nodo(int Dato,Nodo LigaI,Nodo LigaD){
+        this.Dato=Dato;
+        this.LigaI=LigaI;
+        this.LigaD=LigaD;
+    }
     //Getters and Setters
 
     public int getDato() {

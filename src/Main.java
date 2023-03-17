@@ -58,11 +58,13 @@ public class Main {
                 Option=Menu();
                 switch (Option){
                     case "Insertar Ordenado":
+                        System.out.println(L.Length());
                         break;
                     case "Insertar al Final":
-                        L.InsertEnd(GetNum());
+                        L.Insert(GetNum(),"End");
                         break;
                     case "Insertar al Inicio":
+                        L.Insert(GetNum(),"Begin");
                         break;
                     case "Ordenar Lista":
                         break;

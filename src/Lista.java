@@ -35,22 +35,71 @@ public class Lista {
 
     //Metodos
 
-    public void InsertEnd(int Dato){
-        Nodo P,X=new Nodo(Dato);
-        
+    public void Insert(int Dato,String Option){
         if(this.Punta==null){
-            Punta=X;
-            Cola=X;
-            Punta.setLigaI(Cola);
-            Cola.setLigaD(Punta);
+            Nodo X=new Nodo(Dato);
+            X.setLigaI(X); X.setLigaD(X);
+            Punta=X; Cola=X;
         } else{
-            Punta.setLigaI(X);
-            Cola.setLigaD(X);
-            X.setLigaI(Cola);
-            Cola=X;
-            Cola.setLigaD(Punta);
+            Nodo X=new Nodo(Dato,Cola,Punta);
+            Punta.setLigaI(X); Cola.setLigaD(X);
+            if(Option=="End"){
+                Cola=X;
+            } else if (Option=="Begin") {
+                Punta=X;
+            }
         }
 
+    }
+
+    public void InsertSortAsc(int Dato){
+        if(Punta==null){
+            Insert(Dato,"End");
+        }else if (Dato<=Punta.getDato()){
+            Insert(Dato,"Begin");
+        }else if(Dato>= Cola.getDato()){
+            Insert(Dato,"End");
+        }else{
+
+        }
+    }
+
+    public void InsertSortDsc(int Dato){
+        if(Punta==null){
+            Insert(Dato,"End");
+        }else if (Dato >= Punta.getDato()){
+            Insert(Dato,"Begin");
+        }else if(Dato <= Cola.getDato()){
+            Insert(Dato,"End");
+        }else{
+            for(int i=0;i<Length();i++){
+                Nodo P=Punta;
+                do{
+
+                }while (P!=Punta);
+            }
+        }
+    }
+
+    public int Length(){
+        int cont=0;
+        if(Punta!=null){
+            Nodo P=Punta;
+            do{
+                P=P.getLigaD();
+                cont++;
+            }while (P!=Punta);
+        }
+
+        return cont;
+    }
+
+    //utilities
+
+    public void Swap(Nodo P,Nodo S){
+        int aux=P.getDato();
+        P.setDato(S.getDato());
+        S.setDato(aux);
     }
 
     public void ShowListDetails(){
