@@ -3,7 +3,7 @@ import javax.swing.*;
 public class Main {
     public static void main(String[] args) {
         boolean app=true,action=true;
-        String OptionP,Option,OptionOrder,OptionOpe,OptionAct;
+        String OptionP,Option,OptionSort,OptionOpe,OptionAct,OptionShow;
 
         //Archivo
         Html FileProyect=new Html();
@@ -49,10 +49,6 @@ public class Main {
                     action=false;
                     app=false;
                     break;
-                default:
-                    System.out.println("Variable no reconocida");
-                    action=false;
-                    break;
             }
             while (action){
                 Option=Menu();
@@ -61,17 +57,34 @@ public class Main {
                         System.out.println(L.Length());
                         break;
                     case "Insertar al Final":
-                        L.Insert(GetNum(),"End");
+                        L.InsertEnd(GetNum());
                         break;
                     case "Insertar al Inicio":
-                        L.Insert(GetNum(),"Begin");
+                        L.InsertBegin(GetNum());
                         break;
                     case "Ordenar Lista":
+                        OptionSort=MenuSort();
+                        switch (OptionSort){
+                            case "Ascendente":
+                                L.SortAsc();
+                                break;
+                            case "Descendente":
+                                L.SortDsc();
+                                break;
+                        }
                         break;
                     case "Mostrar Lista":
-                        L.ShowListDetails();
-                        L.ShowList();
-                        L.ShowListHtml();
+                        OptionShow=MenuShow();
+                        switch (OptionShow){
+                            case "Consola":
+                                L.ShowListDetails();
+                                break;
+                            case "Panel":
+                                L.ShowList();
+                                break;
+                            case "Web":
+                                L.ShowListHtml();
+                        }
                         break;
                     case "Volver":
                         action=false;
@@ -127,7 +140,7 @@ public class Main {
         return Option;
     }
 
-    public static String MenuOrder(){
+    public static String MenuSort(){
         String[] Options = {    "Ascendente",
                                 "Descendente"
                             };
@@ -167,8 +180,24 @@ public class Main {
                             };
         String Option =  (String) JOptionPane.showInputDialog(
                 null,
-                "Seleccione la Opcion: ",
+                "Seleccione una Opcion: ",
                 "Operaciones",
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                Options,
+                Options[0]);
+        return Option;
+    }
+
+    public static String MenuShow(){
+        String[] Options = {    "Consola",
+                                "Panel",
+                                "Web"
+        };
+        String Option =  (String) JOptionPane.showInputDialog(
+                null,
+                "Seleccione una Opcion: ",
+                "Impresion",
                 JOptionPane.QUESTION_MESSAGE,
                 null,
                 Options,

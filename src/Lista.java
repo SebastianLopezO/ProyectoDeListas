@@ -35,7 +35,7 @@ public class Lista {
 
     //Metodos
 
-    public void Insert(int Dato,String Option){
+    public void InsertEnd(int Dato){
         if(this.Punta==null){
             Nodo X=new Nodo(Dato);
             X.setLigaI(X); X.setLigaD(X);
@@ -43,41 +43,82 @@ public class Lista {
         } else{
             Nodo X=new Nodo(Dato,Cola,Punta);
             Punta.setLigaI(X); Cola.setLigaD(X);
-            if(Option=="End"){
-                Cola=X;
-            } else if (Option=="Begin") {
-                Punta=X;
-            }
+            Cola=X;
         }
-
     }
 
-    public void InsertSortAsc(int Dato){
+    public void InsertBegin(int Dato){
+        if(this.Punta==null){
+            Nodo X=new Nodo(Dato);
+            X.setLigaI(X); X.setLigaD(X);
+            Punta=X; Cola=X;
+        } else{
+            Nodo X=new Nodo(Dato,Cola,Punta);
+            Punta.setLigaI(X); Cola.setLigaD(X);
+            Punta=X;
+        }
+    }
+
+    public void InsertAsc(int Dato){
+        SortAsc();
         if(Punta==null){
-            Insert(Dato,"End");
+            InsertEnd(Dato);
         }else if (Dato<=Punta.getDato()){
-            Insert(Dato,"Begin");
+            InsertBegin(Dato);
         }else if(Dato>= Cola.getDato()){
-            Insert(Dato,"End");
+            InsertEnd(Dato);
         }else{
-
+            int cont=0;
+            int len=Length();
+            Nodo P=Punta;
+            while(cont<=len*len){
+                if(P.getDato()>(P.getLigaD()).getDato()){
+                    Swap(P,P.getLigaD());
+                }
+                cont++;
+            }
         }
     }
 
-    public void InsertSortDsc(int Dato){
+    public void InsertDsc(int Dato){
+        SortDsc();
         if(Punta==null){
-            Insert(Dato,"End");
+            InsertEnd(Dato);
         }else if (Dato >= Punta.getDato()){
-            Insert(Dato,"Begin");
+            InsertBegin(Dato);
         }else if(Dato <= Cola.getDato()){
-            Insert(Dato,"End");
+            InsertEnd(Dato);
         }else{
-            for(int i=0;i<Length();i++){
-                Nodo P=Punta;
-                do{
-
-                }while (P!=Punta);
+            int cont=0;
+            int len=Length();
+            Nodo P=Punta;
+            while(cont<=len*len){
+                if(P.getDato()<(P.getLigaD()).getDato()){
+                    Swap(P,P.getLigaD());
+                }
+                cont++;
             }
+        }
+    }
+
+    public void SortAsc(){
+        int cont=0; int len=Length(); Nodo P=Punta;
+        while(cont!=(len*len)){
+            if(P.getDato()>(P.getLigaD()).getDato() && P.getLigaD()!=Punta){
+                Swap(P,P.getLigaD());
+            }
+            P=P.getLigaD();
+            cont++;
+        }
+    }
+    public void SortDsc(){
+        int cont=0; int len=Length(); Nodo P=Punta;
+        while(cont!=(len*len)){
+            if(P.getDato()<(P.getLigaD()).getDato() && P.getLigaD()!=Punta){
+                Swap(P,P.getLigaD());
+            }
+            P=P.getLigaD();
+            cont++;
         }
     }
 
