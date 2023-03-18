@@ -144,7 +144,7 @@ public class Lista {
                     PS=PS.getLigaD();
                 }
             }
-            if(L.getPunta()!=null && S.getPunta()!=null){
+            if(L.getPunta()!=null || S.getPunta()!=null){
                 InsertEnd(DL+DS);
             }
         }while (PL!=null || PS!=null);
@@ -172,7 +172,7 @@ public class Lista {
                     PS=PS.getLigaD();
                 }
             }
-            if(L.getPunta()!=null && S.getPunta()!=null){
+            if(L.getPunta()!=null || S.getPunta()!=null){
                 InsertEnd(DL-DS);
             }
         }while (PL!=null || PS!=null);
@@ -200,7 +200,7 @@ public class Lista {
                     PS=PS.getLigaD();
                 }
             }
-            if(L.getPunta()!=null && S.getPunta()!=null){
+            if(L.getPunta()!=null || S.getPunta()!=null){
                 InsertEnd(DL*DS);
             }
         }while (PL!=null || PS!=null);
@@ -210,7 +210,6 @@ public class Lista {
         Nodo PL=L.getPunta();Nodo PS=S.getPunta();int DL,DS;
         do{
             DL=0;DS=0;
-            //Obtener Digito de Lista L
             if(PL!=null){
                 DL = PL.getDato();
                 if(PL.getLigaD()==L.getPunta()) {
@@ -220,7 +219,6 @@ public class Lista {
                 }
             }
 
-            //Obtener Digito de Lista S
             if(PS!=null){
                 DS = PS.getDato();
                 if(PS.getLigaD()==S.getPunta()) {
@@ -229,8 +227,10 @@ public class Lista {
                     PS=PS.getLigaD();
                 }
             }
-            if(L.getPunta()!=null && S.getPunta()!=null && DS!=0){
-                InsertEnd(DL+DS);
+            if(L.getPunta()!=null || S.getPunta()!=null){
+                if(DS!=0){
+                    InsertEnd(DL/DS);
+                }
             }
         }while (PL!=null || PS!=null);
     }
@@ -261,98 +261,132 @@ public class Lista {
     }
 
     public void ShowListDetails(){
-        String msj = "[ ";
+        String msj = this.Name+": [ ";
         Nodo P=this.Punta;
-        boolean Spin=true;
-        while (Spin && Punta!=null){
-            msj += "{ "+BColors.BLUE+P.getLigaI()+BColors.RESET +" | "+ P.getDato() + " | " +BColors.BLUE+ P.getLigaD()+BColors.RESET + " }  => ";
-            P=P.getLigaD();
-            if(P==Punta){
-                Spin=false;
-            }
+        if(Punta!=null) {
+            do {
+                msj += "{ " + BColors.BLUE + P.getLigaI() + BColors.RESET + " | " + P.getDato() + " | " + BColors.BLUE + P.getLigaD() + BColors.RESET + " }  => ";
+                P = P.getLigaD();
+            } while (P != Punta);
         }
         msj += " ]";
         System.out.println(msj);
     }
 
     public void ShowList(){
-        String msj = "[ ";
+        String msj = this.Name+": [ ";
         Nodo P=this.Punta;
-        boolean Spin=true;
-        while (Spin && Punta!=null){
-            msj += "{ " + P.getDato() + " }  => ";
-            P=P.getLigaD();
-            if(P==Punta){
-                Spin=false;
-            }
+        if(Punta!=null) {
+            do {
+                msj += "{ " + P.getDato() + " }  => ";
+                P = P.getLigaD();
+            } while (P != Punta);
         }
         msj += " ]";
         JOptionPane.showMessageDialog(null, msj);
     }
 
-    public void ShowListHtml(){
-        //Encabezado y Estilo
-        String list = "";
+    public void ShowListOpe(Lista L,Lista S){
+        String msjL = L.Name+": [ "; String msjS = S.Name+": [ "; String msj = this.Name+": [ ";
+        Nodo P=this.Punta; Nodo PL=L.getPunta(); Nodo PS=S.getPunta();
+        if(Punta!=null) {
+            do {
+                msj += "{ " + P.getDato() + " }  => ";
+                P = P.getLigaD();
+            }while (P!=Punta);
+        }
+        if(L.getPunta()!=null) {
+            do {
+                msjL += "{ " + PL.getDato() + " }  => ";
+                PL = PL.getLigaD();
+            }while (PL!=L.getPunta());
+        }
+        if(S.getPunta()!=null) {
+            do {
+                msjS += "{ " + PS.getDato() + " }  => ";
+                PS = PS.getLigaD();
+            }while (PS!=S.getPunta());
+        }
+        msj += " ]";msjL += " ]";msjS += " ]";
+        JOptionPane.showMessageDialog(null, msjL+"\n"+msjS+"\n"+Method+":\n"+msj);
+    }
 
+    public void ShowListDetOpe(Lista L, Lista S){
+        String msjL = L.Name+": [ "; String msjS = S.Name+": [ "; String msj = this.Name+": [ ";
+        Nodo P=this.Punta; Nodo PL=L.getPunta(); Nodo PS=S.getPunta();
+        if(Punta!=null) {
+            do {
+                msj += "{ " + BColors.BLUE + P.getLigaI() + BColors.RESET + " | " + P.getDato() + " | " + BColors.BLUE + P.getLigaD() + BColors.RESET + " }  => ";
+                P = P.getLigaD();
+            }while (P!=Punta);
+        }
+        if(L.getPunta()!=null) {
+            do {
+                msjL += "{ " + BColors.BLUE + PL.getLigaI() + BColors.RESET + " | " + PL.getDato() + " | " + BColors.BLUE + PL.getLigaD() + BColors.RESET + " }  => ";
+                PL = PL.getLigaD();
+            }while (PL!=L.getPunta());
+        }
+        if(S.getPunta()!=null) {
+            do {
+                msjS += "{ " + BColors.BLUE + PS.getLigaI() + BColors.RESET + " | " + PS.getDato() + " | " + BColors.BLUE + PS.getLigaD() + BColors.RESET + " }  => ";
+                PS = PS.getLigaD();
+            }while (PS!=S.getPunta());
+        }
+        msj += " ]";msjL += " ]";msjS += " ]";
+        System.out.println(msjL+"\n"+msjS+"\n"+Method+":\n"+msj);
+    }
+
+    public void ShowListHtml(){
         Nodo P=this.Punta;
-        boolean Spin=true;
-        list+="<div class=\"container\">" +
+        String list="<div class=\"container\">" +
                 "<div class=\"container-title\">"+
                 "<div class=\"title\">"+Name+"</div>"+
                 "<div class=\"text\">"+Method+"</div>"+
                 "</div>";
-
-        while (Spin && Punta!=null){
-            list += "<table>"+
-                    "<tr>"+
-                    "<td class=\"transparent\">"+P+"</td>"+
-                    "</tr>"+
-                    "<tr>"+
-                    "<td class=\"green\">"+P.getLigaI()+"</td>"+
-                    "<td class=\"yellow\">"+P.getDato()+"</td>"+
-                    "<td class=\"green\">"+P.getLigaD()+"</td>"+
-                    "</tr>"+
-                    "</table>"+
-                    "<div class=\"flecha\">&#8646;</div>";
-            P=P.getLigaD();
-            if(P==Punta){
-                Spin=false;
-            }
+        if(Punta!=null) {
+            do {
+                list += "<table>" +
+                        "<tr>" +
+                        "<td class=\"transparent\">" + P + "</td>" +
+                        "</tr>" +
+                        "<tr>" +
+                        "<td class=\"green\">" + P.getLigaI() + "</td>" +
+                        "<td class=\"yellow\">" + P.getDato() + "</td>" +
+                        "<td class=\"green\">" + P.getLigaD() + "</td>" +
+                        "</tr>" +
+                        "</table>" +
+                        "<div class=\"flecha\">&#8646;</div>";
+                P = P.getLigaD();
+            } while (P != Punta);
         }
         list += "</div>";
         Html File=new Html();
         File.AddBody(list);
         File.Export(Name);
-
     }
 
     public String ExportListHtml(){
-        String html = "";
-
         Nodo P=this.Punta;
-        boolean Spin=true;
-        html+="<div class=\"container\">" +
+        String html="<div class=\"container\">" +
                     "<div class=\"container-title\">"+
                         "<div class=\"title\">"+Name+"</div>"+
                         "<div class=\"text\">"+Method+"</div>"+
                     "</div>";
-
-        while (Spin && Punta!=null){
-            html += "<table>"+
-                        "<tr>"+
-                            "<td class=\"transparent\">"+P+"</td>"+
-                        "</tr>"+
-                        "<tr>"+
-                            "<td class=\"green\">"+P.getLigaI()+"</td>"+
-                            "<td class=\"yellow\">"+P.getDato()+"</td>"+
-                            "<td class=\"green\">"+P.getLigaD()+"</td>"+
-                        "</tr>"+
-                    "</table>"+
-                    "<div class=\"flecha\">&#8646;</div>";
-            P=P.getLigaD();
-            if(P==Punta){
-                Spin=false;
-            }
+        if(Punta!=null) {
+            do {
+                html += "<table>" +
+                        "<tr>" +
+                        "<td class=\"transparent\">" + P + "</td>" +
+                        "</tr>" +
+                        "<tr>" +
+                        "<td class=\"green\">" + P.getLigaI() + "</td>" +
+                        "<td class=\"yellow\">" + P.getDato() + "</td>" +
+                        "<td class=\"green\">" + P.getLigaD() + "</td>" +
+                        "</tr>" +
+                        "</table>" +
+                        "<div class=\"flecha\">&#8646;</div>";
+                P = P.getLigaD();
+            } while (P != Punta);
         }
         html += "</div>";
         return html;

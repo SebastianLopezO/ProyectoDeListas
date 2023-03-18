@@ -50,7 +50,12 @@ public class Main {
                         case "/": ListAns.Div(L,S);break;
                     }
                     ListAns.Method=OptionOpe[0]+OptionOpe[1]+OptionOpe[2];
-                    Export(new Lista[]{ListA,ListB,ListC,ListD,ListAns});
+                    OptionShow=MenuShow();
+                    switch (OptionShow){
+                        case "Consola": ListAns.ShowListDetOpe(L,S);break;
+                        case "Panel": ListAns.ShowListOpe(L,S);break;
+                        case "Web": Export(new Lista[]{ListA,ListB,ListC,ListD,ListAns});break;
+                    }
                     action=false;
                     break;
                 case "Salir":
@@ -91,14 +96,9 @@ public class Main {
                     case "Mostrar Lista":
                         OptionShow=MenuShow();
                         switch (OptionShow){
-                            case "Consola":
-                                L.ShowListDetails();
-                                break;
-                            case "Panel":
-                                L.ShowList();
-                                break;
-                            case "Web":
-                                L.ShowListHtml();
+                            case "Consola": L.ShowListDetails();break;
+                            case "Panel": L.ShowList();break;
+                            case "Web": L.ShowListHtml();break;
                         }
                         break;
                     case "Volver":
