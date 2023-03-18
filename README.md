@@ -26,14 +26,14 @@ This project consists mainly in the ways to interact with a double linked list i
 Este proyecto consiste principalmente en las formas de interactuar con una lista doblemente ligada en forma circular, donde podamos hacer acciones basicas como insertar, modificar, buscar, eliminar y mostrar, todo principalmente bajo estos parametros:
 
 
-- [ ] Insertar al Inicio
+- [x] Insertar al Inicio
 - [x] Insertar al Final
 - [ ] Insertar Ordenado:
   - [ ] Ascendente
   - [ ] Descendente
-- [ ] Ordenar Lista:
-  - [ ] Ascendente
-  - [ ] Descendente
+- [x] Ordenar Lista:
+  - [x] Ascendente
+  - [x] Descendente
 - [ ] Buscar Dato:
   - [ ] Mostrar
   - [ ] Eliminar
