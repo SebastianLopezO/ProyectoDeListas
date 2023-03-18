@@ -70,8 +70,17 @@ public class Main {
                 Option=Menu();
                 switch (Option){
                     case "Insertar Ordenado":
-                        L.Method=Option;
-                        System.out.println(L.Length());
+
+                        OptionSort=MenuSort();
+                        switch (OptionSort){
+                            case "Ascendente":
+                                L.InsertAsc(GetNum());
+                                break;
+                            case "Descendente":
+                                L.InsertDsc(GetNum());
+                                break;
+                        }
+                        L.Method=Option+" "+OptionSort;
                         break;
                     case "Insertar al Final":
                         L.Method=Option;
@@ -112,8 +121,7 @@ public class Main {
     }
 
     public static String Menu(){
-        String[] Options = {    "Insertar al Final",
-                                "Insertar Ordenado",
+        String[] Options = {    "Insertar Ordenado",
                                 "Insertar al Final",
                                 "Insertar al Inicio",
                                 "Ordenar Lista",

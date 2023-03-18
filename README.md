@@ -4,9 +4,9 @@ This project consists mainly in the ways to interact with a double linked list i
 
 - [x] Insert at top
 - [x] Insert at End
-- [ ] Insert Sorted:
-  - [ ] Ascending
-  - [ ] Descending
+- [x] Insert Sorted:
+  - [x] Ascending
+  - [x] Descending
 - [x] Sort List:
   - [x] Ascending
   - [x] Descending
@@ -28,9 +28,9 @@ Este proyecto consiste principalmente en las formas de interactuar con una lista
 
 - [x] Insertar al Inicio
 - [x] Insertar al Final
-- [ ] Insertar Ordenado:
-  - [ ] Ascendente
-  - [ ] Descendente
+- [x] Insertar Ordenado:
+  - [x] Ascendente
+  - [x] Descendente
 - [x] Ordenar Lista:
   - [x] Ascendente
   - [x] Descendente

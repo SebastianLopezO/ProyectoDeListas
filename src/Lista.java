@@ -66,15 +66,15 @@ public class Lista {
         }else if(Dato>= Cola.getDato()){
             InsertEnd(Dato);
         }else{
-            int cont=0;
-            int len=Length();
-            Nodo P=Punta;
-            while(cont<=len*len){
-                if(P.getDato()>(P.getLigaD()).getDato()){
-                    Swap(P,P.getLigaD());
+            Nodo P=Punta,A=P.getLigaD(); Boolean ins=true;
+            do{
+                if(P.getDato()<=Dato && Dato<=A.getDato()){
+                    Nodo X=new Nodo(Dato,P,A);
+                    P.setLigaD(X);A.setLigaI(X);
+                    ins=false;
                 }
-                cont++;
-            }
+                P=P.getLigaD();A=P.getLigaD();
+            }while (P!=Cola && ins);
         }
     }
 
@@ -87,15 +87,15 @@ public class Lista {
         }else if(Dato <= Cola.getDato()){
             InsertEnd(Dato);
         }else{
-            int cont=0;
-            int len=Length();
-            Nodo P=Punta;
-            while(cont<=len*len){
-                if(P.getDato()<(P.getLigaD()).getDato()){
-                    Swap(P,P.getLigaD());
+            Nodo P=Punta,A=P.getLigaD(); Boolean ins=true;
+            do{
+                if(P.getDato()>=Dato && Dato>=A.getDato()){
+                    Nodo X=new Nodo(Dato,P,A);
+                    P.setLigaD(X);A.setLigaI(X);
+                    ins=false;
                 }
-                cont++;
-            }
+                P=P.getLigaD();A=P.getLigaD();
+            }while (P!=Cola && ins);
         }
     }
 
