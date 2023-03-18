@@ -2,24 +2,24 @@
 
 This project consists mainly in the ways to interact with a double linked list in circular form, where we can do basic actions like insert, modify, search, delete and display, all mainly under these parameters:
 
-- [ ] Insert at top
+- [x] Insert at top
 - [x] Insert at End
 - [ ] Insert Sorted:
   - [ ] Ascending
   - [ ] Descending
-- [ ] Sort List:
-  - [ ] Ascending
-  - [ ] Descending
+- [x] Sort List:
+  - [x] Ascending
+  - [x] Descending
 - [ ] Search Data:
   - [ ] Show
   - [ ] Delete
   - [ ] Replace
 - [x] Show List
-- [ ] List Operation:
-  - [ ] Add
-  - [ ] Subtract
-  - [ ] Multiplication
-  - [ ] Division
+- [x] List Operation:
+  - [x] Add
+  - [x] Subtract
+  - [x] Multiplication
+  - [x] Division
 
 ---
 
@@ -39,11 +39,11 @@ Este proyecto consiste principalmente en las formas de interactuar con una lista
   - [ ] Eliminar
   - [ ] Reemplazar
 - [x] Mostrar Lista
-- [ ] Operacion de Listas:
-  - [ ] Suma
-  - [ ] Resta
-  - [ ] Multiplicación
-  - [ ] División
+- [x] Operacion de Listas:
+  - [x] Suma
+  - [x] Resta
+  - [x] Multiplicación
+  - [x] División
 
 
 💻 Programmers / Programadores
