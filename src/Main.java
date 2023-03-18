@@ -3,10 +3,8 @@ import javax.swing.*;
 public class Main {
     public static void main(String[] args) {
         boolean app=true,action=true;
-        String OptionP,Option,OptionSort,OptionOpe,OptionAct,OptionShow;
+        String OptionP,Option,OptionSort,OptionOpe[],OptionAct,OptionShow;
 
-        //Archivo
-        Html FileProyect=new Html();
 
         //Listas
         Lista ListA=new Lista("ListA");
@@ -17,35 +15,48 @@ public class Main {
 
         //Puntero
         Lista L=null;
+        Lista S=null;
 
         do {
             action=true;
             OptionP=MenuVal();
             switch (OptionP){
-                case "ListA":
-                    L=ListA;
-                    break;
-                case "ListB":
-                    L=ListB;
-                    break;
-                case "ListC":
-                    L=ListC;
-                    break;
-                case "ListD":
-                    L=ListD;
-                    break;
+                case "ListA": L=ListA;break;
+                case "ListB": L=ListB;break;
+                case "ListC": L=ListC;break;
+                case "ListD": L=ListD;break;
                 case "ListAns":
                     L=ListAns;
+                    break;
+                case "Operacion entre Listas":
+                    OptionOpe=MenuOpe();
+                    ListAns.Truncate();
+                    switch (OptionOpe[0]){
+                        case "ListA": L=ListA;break;
+                        case "ListB": L=ListB;break;
+                        case "ListC": L=ListC;break;
+                        case "ListD": L=ListD;break;
+                    }
+                    switch (OptionOpe[2]){
+                        case "ListA": S=ListA;break;
+                        case "ListB": S=ListB;break;
+                        case "ListC": S=ListC;break;
+                        case "ListD": S=ListD;break;
+                    }
+                    switch (OptionOpe[1]){
+                        case "+": ListAns.Sum(L,S);break;
+                        case "-": ListAns.Sub(L,S);break;
+                        case "*": ListAns.Mult(L,S);break;
+                        case "/": ListAns.Div(L,S);break;
+                    }
+                    ListAns.Method=OptionOpe[0]+OptionOpe[1]+OptionOpe[2];
+                    Export(new Lista[]{ListA,ListB,ListC,ListD,ListAns});
+                    action=false;
                     break;
                 case "Salir":
                     System.out.println("Hasta luego, vuelva pronto");
                     //Exportacion
-                    FileProyect.AddBody(ListA.ExportListHtml());
-                    FileProyect.AddBody(ListB.ExportListHtml());
-                    FileProyect.AddBody(ListC.ExportListHtml());
-                    FileProyect.AddBody(ListD.ExportListHtml());
-                    FileProyect.AddBody(ListAns.ExportListHtml());
-                    FileProyect.Export("Memory");
+                    Export(new Lista[]{ListA,ListB,ListC,ListD,ListAns});
                     action=false;
                     app=false;
                     break;
@@ -54,12 +65,15 @@ public class Main {
                 Option=Menu();
                 switch (Option){
                     case "Insertar Ordenado":
+                        L.Method=Option;
                         System.out.println(L.Length());
                         break;
                     case "Insertar al Final":
+                        L.Method=Option;
                         L.InsertEnd(GetNum());
                         break;
                     case "Insertar al Inicio":
+                        L.Method=Option;
                         L.InsertBegin(GetNum());
                         break;
                     case "Ordenar Lista":
@@ -72,6 +86,7 @@ public class Main {
                                 L.SortDsc();
                                 break;
                         }
+                        L.Method=Option+" "+OptionSort;
                         break;
                     case "Mostrar Lista":
                         OptionShow=MenuShow();
@@ -89,10 +104,8 @@ public class Main {
                     case "Volver":
                         action=false;
                         break;
-                    default:
-                        System.out.println("Opcion Incorrecta");
-                        break;
                 }
+
             }
 
         }while (app);
@@ -172,20 +185,14 @@ public class Main {
         return Option;
     }
 
-    public static String MenuOperate(){
-        String[] Options = {    "Suma",
-                                "Resta",
-                                "Multiplicación",
-                                "División"
-                            };
-        String Option =  (String) JOptionPane.showInputDialog(
-                null,
-                "Seleccione una Opcion: ",
-                "Operaciones",
-                JOptionPane.QUESTION_MESSAGE,
-                null,
-                Options,
-                Options[0]);
+    public static String[] MenuOpe(){
+        JComboBox<String> Var1 = new JComboBox<>(new String[]{"ListA", "ListB","ListC", "ListD"});
+        JComboBox<String> Var2 = new JComboBox<>(new String[]{"ListA", "ListB","ListC", "ListD"});
+        JComboBox<String> Ope = new JComboBox<>(new String[]{"+", "-", "*", "/"});
+
+        Object[] msj ={Var1,Ope,Var2};
+        JOptionPane.showConfirmDialog(null,msj,"Operacion a realizar:",JOptionPane.DEFAULT_OPTION);
+        String[] Option={(String) Var1.getSelectedItem(),(String) Ope.getSelectedItem(),(String) Var2.getSelectedItem()};
         return Option;
     }
 
@@ -215,6 +222,15 @@ public class Main {
                 System.out.println("No ha insertado un numero, error"+ex);
             }
         }
+    }
+
+    public static void Export(Lista[] Elems){
+        //Archivo
+        Html FileProyect=new Html();
+        for(int i=0;i<Elems.length;i++){
+            FileProyect.AddBody(Elems[i].ExportListHtml());
+        }
+        FileProyect.Export("Memory");
     }
 
 }

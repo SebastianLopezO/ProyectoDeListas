@@ -1,6 +1,4 @@
 import javax.swing.*;
-import javax.swing.text.html.HTMLEditorKit;
-import java.awt.*;
 
 public class Lista {
     //Atributos
@@ -122,6 +120,120 @@ public class Lista {
         }
     }
 
+    //Operaciones
+    public void Sum(Lista L, Lista S){
+        Nodo PL=L.getPunta();Nodo PS=S.getPunta();int DL,DS;
+        do{
+            DL=0;DS=0;
+            //Obtener Digito de Lista L
+            if(PL!=null){
+                DL = PL.getDato();
+                if(PL.getLigaD()==L.getPunta()) {
+                    PL = null;
+                }else{
+                    PL=PL.getLigaD();
+                }
+            }
+
+            //Obtener Digito de Lista S
+            if(PS!=null){
+                DS = PS.getDato();
+                if(PS.getLigaD()==S.getPunta()) {
+                    PS = null;
+                }else{
+                    PS=PS.getLigaD();
+                }
+            }
+            if(L.getPunta()!=null && S.getPunta()!=null){
+                InsertEnd(DL+DS);
+            }
+        }while (PL!=null || PS!=null);
+    }
+    public void Sub(Lista L, Lista S){
+        Nodo PL=L.getPunta();Nodo PS=S.getPunta();int DL,DS;
+        do{
+            DL=0;DS=0;
+            //Obtener Digito de Lista L
+            if(PL!=null){
+                DL = PL.getDato();
+                if(PL.getLigaD()==L.getPunta()) {
+                    PL = null;
+                }else{
+                    PL=PL.getLigaD();
+                }
+            }
+
+            //Obtener Digito de Lista S
+            if(PS!=null){
+                DS = PS.getDato();
+                if(PS.getLigaD()==S.getPunta()) {
+                    PS = null;
+                }else{
+                    PS=PS.getLigaD();
+                }
+            }
+            if(L.getPunta()!=null && S.getPunta()!=null){
+                InsertEnd(DL-DS);
+            }
+        }while (PL!=null || PS!=null);
+    }
+    public void Mult(Lista L, Lista S){
+        Nodo PL=L.getPunta();Nodo PS=S.getPunta();int DL,DS;
+        do{
+            DL=0;DS=0;
+            //Obtener Digito de Lista L
+            if(PL!=null){
+                DL = PL.getDato();
+                if(PL.getLigaD()==L.getPunta()) {
+                    PL = null;
+                }else{
+                    PL=PL.getLigaD();
+                }
+            }
+
+            //Obtener Digito de Lista S
+            if(PS!=null){
+                DS = PS.getDato();
+                if(PS.getLigaD()==S.getPunta()) {
+                    PS = null;
+                }else{
+                    PS=PS.getLigaD();
+                }
+            }
+            if(L.getPunta()!=null && S.getPunta()!=null){
+                InsertEnd(DL*DS);
+            }
+        }while (PL!=null || PS!=null);
+    }
+
+    public void Div(Lista L, Lista S){
+        Nodo PL=L.getPunta();Nodo PS=S.getPunta();int DL,DS;
+        do{
+            DL=0;DS=0;
+            //Obtener Digito de Lista L
+            if(PL!=null){
+                DL = PL.getDato();
+                if(PL.getLigaD()==L.getPunta()) {
+                    PL = null;
+                }else{
+                    PL=PL.getLigaD();
+                }
+            }
+
+            //Obtener Digito de Lista S
+            if(PS!=null){
+                DS = PS.getDato();
+                if(PS.getLigaD()==S.getPunta()) {
+                    PS = null;
+                }else{
+                    PS=PS.getLigaD();
+                }
+            }
+            if(L.getPunta()!=null && S.getPunta()!=null && DS!=0){
+                InsertEnd(DL+DS);
+            }
+        }while (PL!=null || PS!=null);
+    }
     public int Length(){
         int cont=0;
         if(Punta!=null){
@@ -136,6 +248,11 @@ public class Lista {
     }
 
     //utilities
+
+    public void Truncate(){
+        this.Punta=null;
+        System.gc();
+    }
 
     public void Swap(Nodo P,Nodo S){
         int aux=P.getDato();
