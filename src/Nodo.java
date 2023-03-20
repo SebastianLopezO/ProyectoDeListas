@@ -5,16 +5,16 @@ public class Nodo {
     private Nodo LigaD;
 
 
-    public Nodo(int Dato){
-        this.Dato=Dato;
-        this.LigaI=null;
-        this.LigaD=null;
+    public Nodo(int Dato) {
+        this.Dato = Dato;
+        this.LigaI = null;
+        this.LigaD = null;
     }
 
-    public Nodo(int Dato,Nodo LigaI,Nodo LigaD){
-        this.Dato=Dato;
-        this.LigaI=LigaI;
-        this.LigaD=LigaD;
+    public Nodo(int Dato, Nodo LigaI, Nodo LigaD) {
+        this.Dato = Dato;
+        this.LigaI = LigaI;
+        this.LigaD = LigaD;
     }
     //Getters and Setters
 

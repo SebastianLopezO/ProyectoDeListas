@@ -8,31 +8,31 @@ public class Html {
     public String Head;
     public String Body;
 
-    public Html(){
-        this.Head="<head><title>Proyecto de Listas</title><link rel=\"stylesheet\" type=\"text/css\" href=\"style.css\"></head>";
-        this.Body="<body></body>";
+    public Html() {
+        this.Head = "<head><title>Proyecto de Listas</title><link rel=\"stylesheet\" type=\"text/css\" href=\"style.css\"></head>";
+        this.Body = "<body></body>";
     }
 
-    public void AddBody(String html){
-        this.Body+=html;
+    public void AddBody(String html) {
+        this.Body += html;
     }
 
-    public void Export(String FileName){
+    public void Export(String FileName) {
         try {
             // Crear archivo HTML
-            File archivo = new File("src/frame/"+FileName+".html");
+            File archivo = new File("src/frame/" + FileName + ".html");
             archivo.createNewFile();
 
             // Escribir código HTML en archivo
             FileWriter fw = new FileWriter(archivo);
             BufferedWriter bw = new BufferedWriter(fw);
-            bw.write(this.Head+this.Body);
+            bw.write(this.Head + this.Body);
             bw.close();
 
             // Abrir archivo HTML en el navegador predeterminado
             Desktop.getDesktop().browse(archivo.toURI());
         } catch (IOException e) {
-            System.out.println("Error al Exportar resultado: "+e);
+            System.out.println("Error al Exportar resultado: " + e);
         }
     }
 }
