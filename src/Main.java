@@ -1,4 +1,7 @@
 import javax.swing.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class Main {
     public static void main(String[] args) {
@@ -12,6 +15,14 @@ public class Main {
         Lista ListC = new Lista("ListC");
         Lista ListD = new Lista("ListD");
         Lista ListAns = new Lista("ListAns");
+
+        //Mapa
+        Map<String, Lista> Variables = new HashMap<>();
+        Variables.put("ListA", ListA);
+        Variables.put("ListB", ListB);
+        Variables.put("ListC", ListC);
+        Variables.put("ListD", ListD);
+        Variables.put("ListAns", ListAns);
 
         //Puntero
         Lista L = null;
@@ -39,34 +50,10 @@ public class Main {
                 case "Operacion entre Listas":
                     OptionOpe = MenuOpe();
                     ListAns.Truncate();
-                    switch (OptionOpe[0]) {
-                        case "ListA":
-                            L = ListA;
-                            break;
-                        case "ListB":
-                            L = ListB;
-                            break;
-                        case "ListC":
-                            L = ListC;
-                            break;
-                        case "ListD":
-                            L = ListD;
-                            break;
-                    }
-                    switch (OptionOpe[2]) {
-                        case "ListA":
-                            S = ListA;
-                            break;
-                        case "ListB":
-                            S = ListB;
-                            break;
-                        case "ListC":
-                            S = ListC;
-                            break;
-                        case "ListD":
-                            S = ListD;
-                            break;
-                    }
+
+                    L=Variables.get(OptionOpe[0]);
+                    S=Variables.get(OptionOpe[2]);
+
                     switch (OptionOpe[1]) {
                         case "+":
                             ListAns.Sum(L, S);
@@ -81,8 +68,9 @@ public class Main {
                             ListAns.Div(L, S);
                             break;
                     }
+
                     ListAns.Method = OptionOpe[0] + OptionOpe[1] + OptionOpe[2];
-                    OptionShow = MenuShow();
+                    OptionShow = MenuShow(ListAns.Method);
                     switch (OptionShow) {
                         case "Consola":
                             ListAns.ShowListDetOpe(L, S);
@@ -105,11 +93,11 @@ public class Main {
                     break;
             }
             while (action) {
-                Option = Menu();
+                Option = Menu(L.Name);
                 switch (Option) {
                     case "Insertar Ordenado":
 
-                        OptionSort = MenuSort();
+                        OptionSort = MenuSort(Option,L.Name);
                         switch (OptionSort) {
                             case "Ascendente":
                                 L.InsertAsc(GetNum());
@@ -129,7 +117,7 @@ public class Main {
                         L.InsertBegin(GetNum());
                         break;
                     case "Ordenar Lista":
-                        OptionSort = MenuSort();
+                        OptionSort = MenuSort(Option,L.Name);
                         switch (OptionSort) {
                             case "Ascendente":
                                 L.SortAsc();
@@ -141,7 +129,7 @@ public class Main {
                         L.Method = Option + " " + OptionSort;
                         break;
                     case "Mostrar Lista":
-                        OptionShow = MenuShow();
+                        OptionShow = MenuShow(L.Name);
                         switch (OptionShow) {
                             case "Consola":
                                 L.ShowListDetails();
@@ -164,7 +152,7 @@ public class Main {
         } while (app);
     }
 
-    public static String Menu() {
+    public static String Menu(String Lista) {
         String[] Options = {"Insertar Ordenado",
                 "Insertar al Final",
                 "Insertar al Inicio",
@@ -176,7 +164,7 @@ public class Main {
         String Option = (String) JOptionPane.showInputDialog(
                 null,
                 "Seleccione la Opcion: ",
-                "Menu",
+                "Menu "+Lista,
                 JOptionPane.QUESTION_MESSAGE,
                 null,
                 Options,
@@ -205,7 +193,7 @@ public class Main {
         return Option;
     }
 
-    public static String MenuSort() {
+    public static String MenuSort(String Metodo,String List) {
         String[] Options = {"Ascendente",
                 "Descendente"
         };
@@ -213,7 +201,7 @@ public class Main {
         String Option = (String) JOptionPane.showInputDialog(
                 null,
                 "Seleccione la Opcion: ",
-                "Ordenar",
+                Metodo+" "+List,
                 JOptionPane.QUESTION_MESSAGE,
                 null,
                 Options,
@@ -221,7 +209,7 @@ public class Main {
         return Option;
     }
 
-    public static String MenuActions() {
+    public static String MenuActions(String List) {
         String[] Options = {"Eliminar",
                 "Reemplazar",
                 "Mostrar"
@@ -229,7 +217,7 @@ public class Main {
         String Option = (String) JOptionPane.showInputDialog(
                 null,
                 "Seleccione la Opcion: ",
-                "Acciones",
+                "Acciones en "+List,
                 JOptionPane.QUESTION_MESSAGE,
                 null,
                 Options,
@@ -248,7 +236,7 @@ public class Main {
         return Option;
     }
 
-    public static String MenuShow() {
+    public static String MenuShow(String List) {
         String[] Options = {"Consola",
                 "Panel",
                 "Web"
@@ -256,7 +244,7 @@ public class Main {
         String Option = (String) JOptionPane.showInputDialog(
                 null,
                 "Seleccione una Opcion: ",
-                "Impresion",
+                "Mostrar "+List,
                 JOptionPane.QUESTION_MESSAGE,
                 null,
                 Options,
