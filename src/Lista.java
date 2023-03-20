@@ -293,15 +293,15 @@ public class Lista {
     }
 
     public void ShowListDetails() {
-        String msj = this.Name + ": [ ";
+        String msj = Clr.BG_BL + "\n" + this.Name + ": [ ";
         Nodo P = this.Punta;
         if (Punta != null) {
             do {
-                msj += "{ " + BColors.BLUE + P.getLigaI() + BColors.RESET + " | " + P.getDato() + " | " + BColors.BLUE + P.getLigaD() + BColors.RESET + " }  => ";
+                msj += "{ " + Clr.BG_G + P.getLigaI() + Clr.BG_BL + " | " + Clr.BG_Y + " " + P.getDato() + " " + Clr.BG_BL + " | " + Clr.BG_G + P.getLigaD() + Clr.BG_BL + " }  => ";
                 P = P.getLigaD();
             } while (P != Punta);
         }
-        msj += " ]";
+        msj += " ]\n\n" + Clr.RT;
         System.out.println(msj);
     }
 
@@ -358,19 +358,19 @@ public class Lista {
         Nodo PS = S.getPunta();
         if (Punta != null) {
             do {
-                msj += "{ " + BColors.BLUE + P.getLigaI() + BColors.RESET + " | " + P.getDato() + " | " + BColors.BLUE + P.getLigaD() + BColors.RESET + " }  => ";
+                msj += "{ " + Clr.B + P.getLigaI() + Clr.RT + " | " + P.getDato() + " | " + Clr.B + P.getLigaD() + Clr.RT + " }  => ";
                 P = P.getLigaD();
             } while (P != Punta);
         }
         if (L.getPunta() != null) {
             do {
-                msjL += "{ " + BColors.BLUE + PL.getLigaI() + BColors.RESET + " | " + PL.getDato() + " | " + BColors.BLUE + PL.getLigaD() + BColors.RESET + " }  => ";
+                msjL += "{ " + Clr.B + PL.getLigaI() + Clr.RT + " | " + PL.getDato() + " | " + Clr.B + PL.getLigaD() + Clr.RT + " }  => ";
                 PL = PL.getLigaD();
             } while (PL != L.getPunta());
         }
         if (S.getPunta() != null) {
             do {
-                msjS += "{ " + BColors.BLUE + PS.getLigaI() + BColors.RESET + " | " + PS.getDato() + " | " + BColors.BLUE + PS.getLigaD() + BColors.RESET + " }  => ";
+                msjS += "{ " + Clr.B + PS.getLigaI() + Clr.RT + " | " + PS.getDato() + " | " + Clr.B + PS.getLigaD() + Clr.RT + " }  => ";
                 PS = PS.getLigaD();
             } while (PS != S.getPunta());
         }
