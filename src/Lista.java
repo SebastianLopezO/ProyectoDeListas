@@ -303,6 +303,7 @@ public class Lista {
             do {
                 if (P.getDato() == Dato) {
                     (P.getLigaI()).setLigaD(P.getLigaD());
+                    (P.getLigaD()).setLigaI(P.getLigaI());
                     System.gc();
                 }
                 P = P.getLigaD();
