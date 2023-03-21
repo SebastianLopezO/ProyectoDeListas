@@ -79,7 +79,7 @@ public class Main {
                             ListAns.ShowListOpe(L, S);
                             break;
                         case "Web":
-                            Export(new Lista[]{ListA, ListB, ListC, ListD, ListAns});
+                            Export(new Lista[]{L,S, ListAns});
                             break;
                     }
                     action = false;
@@ -115,6 +115,30 @@ public class Main {
                     case "Insertar al Inicio":
                         L.Method = Option;
                         L.InsertBegin(GetNum());
+                        break;
+                    case "Buscar Dato":
+                        int Dato=GetNum();
+                        if(L.Include(Dato)){
+                            OptionAct=MenuActions(L.Name,Dato);
+                            switch (OptionAct){
+                                case "Eliminar":
+                                    L.Delete(Dato);
+                                    break;
+                                case "Reemplazar":
+                                    L.Replace(Dato,GetNum());
+                                    break;
+                                case "Mostrar":
+                                    OptionShow=MenuShow(L.Name);
+                                    switch (OptionShow){
+                                        case "Consola": L.ShowDataDetails(Dato); break;
+                                        case "Panel": L.ShowData(Dato); break;
+                                        case "Web": L.ShowDataHtml(Dato); break;
+                                    }
+                                    break;
+                            }
+                        }else{
+                            System.out.println("Elemento no encontrado");
+                        }
                         break;
                     case "Ordenar Lista":
                         OptionSort = MenuSort(Option,L.Name);
@@ -157,6 +181,7 @@ public class Main {
                 "Insertar al Final",
                 "Insertar al Inicio",
                 "Ordenar Lista",
+                "Buscar Dato",
                 "Mostrar Lista",
                 "Volver"
         };
@@ -209,7 +234,7 @@ public class Main {
         return Option;
     }
 
-    public static String MenuActions(String List) {
+    public static String MenuActions(String List,int Dato) {
         String[] Options = {"Eliminar",
                 "Reemplazar",
                 "Mostrar"
@@ -217,7 +242,7 @@ public class Main {
         String Option = (String) JOptionPane.showInputDialog(
                 null,
                 "Seleccione la Opcion: ",
-                "Acciones en "+List,
+                "Acciones en "+List+" para Dato: "+Dato,
                 JOptionPane.QUESTION_MESSAGE,
                 null,
                 Options,

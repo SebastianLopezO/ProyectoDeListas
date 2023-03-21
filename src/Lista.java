@@ -281,6 +281,45 @@ public class Lista {
 
     //utilities
 
+    public Boolean Include(int Dato) {
+        boolean find = false;
+        if (Punta != null) {
+            Nodo P = Punta;
+            do {
+                if (P.getDato() == Dato) {
+                    find = true;
+                }
+                P = P.getLigaD();
+            } while (P != Punta && !find);
+        }
+        return find;
+    }
+
+    public void Delete(int Dato) {
+        Nodo P = Punta;
+        if (P.getLigaD() == Punta && P.getDato() == Dato) {
+            Truncate();
+        } else {
+            do {
+                if (P.getDato() == Dato) {
+                    (P.getLigaI()).setLigaD(P.getLigaD());
+                    System.gc();
+                }
+                P = P.getLigaD();
+            } while (P != Punta);
+        }
+    }
+
+    public void Replace(int Dato, int newDato) {
+        Nodo P = Punta;
+        do {
+            if (P.getDato() == Dato) {
+                P.setDato(newDato);
+            }
+            P = P.getLigaD();
+        } while (P != Punta);
+    }
+
     public void Truncate() {
         this.Punta = null;
         System.gc();
@@ -305,12 +344,43 @@ public class Lista {
         System.out.println(msj);
     }
 
+    public void ShowDataDetails(int Dato) {
+        String msj = Clr.BG_BL + "\n" + this.Name + ": [ ";
+        Nodo P = this.Punta;
+        if (Punta != null) {
+            do {
+                if (P.getDato() == Dato) {
+                    msj+=Clr.BG_G+"{ " + P.getLigaI() + " | " + P.getDato() + " | " + P.getLigaD() + " }"+Clr.BG_BL+"  => ";
+                }else{
+                    msj += "{ " + P.getLigaI() + " | " + P.getDato() + " | " + P.getLigaD() + " }  => ";
+                }
+                P = P.getLigaD();
+            } while (P != Punta);
+        }
+        msj += " ]\n\n" + Clr.RT;
+        System.out.println(msj);
+    }
+
     public void ShowList() {
         String msj = this.Name + ": [ ";
         Nodo P = this.Punta;
         if (Punta != null) {
             do {
                 msj += "{ " + P.getDato() + " }  => ";
+                P = P.getLigaD();
+            } while (P != Punta);
+        }
+        msj += " ]";
+        JOptionPane.showMessageDialog(null, msj);
+    }
+    public void ShowData(int Dato) {
+        String msj = this.Name + ": [ ";
+        Nodo P = this.Punta;
+        if (Punta != null) {
+            do {
+                if(P.getDato()==Dato){
+                    msj += "{ " + P.getDato() + " }  => ";
+                }
                 P = P.getLigaD();
             } while (P != Punta);
         }
@@ -400,6 +470,49 @@ public class Lista {
                         "</tr>" +
                         "</table>" +
                         "<div class=\"flecha\">&#8646;</div>";
+                P = P.getLigaD();
+            } while (P != Punta);
+        }
+        list += "</div>";
+        Html File = new Html();
+        File.AddBody(list);
+        File.Export(Name);
+    }
+
+    public void ShowDataHtml(int Dato) {
+        Nodo P = this.Punta;
+        String list = "<div class=\"container\">" +
+                "<div class=\"container-title\">" +
+                "<div class=\"title\">" + Name + "</div>" +
+                "<div class=\"text\">" + Method + "</div>" +
+                "</div>";
+        if (Punta != null) {
+            do {
+                if(P.getDato()==Dato) {
+                    list += "<table>" +
+                            "<tr>" +
+                            "<td class=\"transparent\">" + P + "</td>" +
+                            "</tr>" +
+                            "<tr>" +
+                            "<td class=\"green\">" + P.getLigaI() + "</td>" +
+                            "<td class=\"yellow\">" + P.getDato() + "</td>" +
+                            "<td class=\"green\">" + P.getLigaD() + "</td>" +
+                            "</tr>" +
+                            "</table>" +
+                            "<div class=\"flecha\">&#8646;</div>";
+                }else{
+                    list += "<table>" +
+                            "<tr>" +
+                            "<td class=\"transparent\">" + P + "</td>" +
+                            "</tr>" +
+                            "<tr>" +
+                            "<td class=\"white node\">" + P.getLigaI() + "</td>" +
+                            "<td class=\"white data\">" + P.getDato() + "</td>" +
+                            "<td class=\"white node\">" + P.getLigaD() + "</td>" +
+                            "</tr>" +
+                            "</table>" +
+                            "<div class=\"flecha\">&#8646;</div>";
+                }
                 P = P.getLigaD();
             } while (P != Punta);
         }
