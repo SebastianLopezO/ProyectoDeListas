@@ -10,10 +10,10 @@ This project consists mainly in the ways to interact with a double linked list i
 - [x] Sort List:
   - [x] Ascending
   - [x] Descending
-- [ ] Search Data:
-  - [ ] Show
-  - [ ] Delete
-  - [ ] Replace
+- [x] Search Data:
+  - [x] Show
+  - [x] Delete
+  - [x] Replace
 - [x] Show List
 - [x] List Operation:
   - [x] Add
@@ -34,10 +34,10 @@ Este proyecto consiste principalmente en las formas de interactuar con una lista
 - [x] Ordenar Lista:
   - [x] Ascendente
   - [x] Descendente
-- [ ] Buscar Dato:
-  - [ ] Mostrar
-  - [ ] Eliminar
-  - [ ] Reemplazar
+- [x] Buscar Dato:
+  - [x] Mostrar
+  - [x] Eliminar
+  - [x] Reemplazar
 - [x] Mostrar Lista
 - [x] Operacion de Listas:
   - [x] Suma
