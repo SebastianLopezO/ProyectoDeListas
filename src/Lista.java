@@ -1,7 +1,7 @@
 import javax.swing.*;
 
 public class Lista {
-    // Atributos
+    //Atributos
     private Nodo Punta;
     private Nodo Cola;
     public String Name, Method;
@@ -13,7 +13,7 @@ public class Lista {
         this.Method = "empty";
     }
 
-    // Getters and Setters
+    //Getters and Setters
 
     public Nodo getPunta() {
         return Punta;
@@ -31,7 +31,7 @@ public class Lista {
         Cola = cola;
     }
 
-    // Metodos
+    //Metodos
 
     public void InsertEnd(int Dato) {
         if (this.Punta == null) {
@@ -137,7 +137,7 @@ public class Lista {
         }
     }
 
-    // Operaciones
+    //Operaciones
     public void Sum(Lista L, Lista S) {
         Nodo PL = L.getPunta();
         Nodo PS = S.getPunta();
@@ -145,7 +145,7 @@ public class Lista {
         do {
             DL = 0;
             DS = 0;
-            // Obtener Digito de Lista L
+            //Obtener Digito de Lista L
             if (PL != null) {
                 DL = PL.getDato();
                 if (PL.getLigaD() == L.getPunta()) {
@@ -155,7 +155,7 @@ public class Lista {
                 }
             }
 
-            // Obtener Digito de Lista S
+            //Obtener Digito de Lista S
             if (PS != null) {
                 DS = PS.getDato();
                 if (PS.getLigaD() == S.getPunta()) {
@@ -177,7 +177,7 @@ public class Lista {
         do {
             DL = 0;
             DS = 0;
-            // Obtener Digito de Lista L
+            //Obtener Digito de Lista L
             if (PL != null) {
                 DL = PL.getDato();
                 if (PL.getLigaD() == L.getPunta()) {
@@ -187,7 +187,7 @@ public class Lista {
                 }
             }
 
-            // Obtener Digito de Lista S
+            //Obtener Digito de Lista S
             if (PS != null) {
                 DS = PS.getDato();
                 if (PS.getLigaD() == S.getPunta()) {
@@ -209,7 +209,7 @@ public class Lista {
         do {
             DL = 0;
             DS = 0;
-            // Obtener Digito de Lista L
+            //Obtener Digito de Lista L
             if (PL != null) {
                 DL = PL.getDato();
                 if (PL.getLigaD() == L.getPunta()) {
@@ -219,7 +219,7 @@ public class Lista {
                 }
             }
 
-            // Obtener Digito de Lista S
+            //Obtener Digito de Lista S
             if (PS != null) {
                 DS = PS.getDato();
                 if (PS.getLigaD() == S.getPunta()) {
@@ -343,7 +343,47 @@ public class Lista {
 
     }
 
-    // utilities
+    //utilities
+
+    public Boolean Include(int Dato) {
+        boolean find = false;
+        if (Punta != null) {
+            Nodo P = Punta;
+            do {
+                if (P.getDato() == Dato) {
+                    find = true;
+                }
+                P = P.getLigaD();
+            } while (P != Punta && !find);
+        }
+        return find;
+    }
+
+    public void Delete(int Dato) {
+        Nodo P = Punta;
+        if (P.getLigaD() == Punta && P.getDato() == Dato) {
+            Truncate();
+        } else {
+            do {
+                if (P.getDato() == Dato) {
+                    (P.getLigaI()).setLigaD(P.getLigaD());
+                    (P.getLigaD()).setLigaI(P.getLigaI());
+                    System.gc();
+                }
+                P = P.getLigaD();
+            } while (P != Punta);
+        }
+    }
+
+    public void Replace(int Dato, int newDato) {
+        Nodo P = Punta;
+        do {
+            if (P.getDato() == Dato) {
+                P.setDato(newDato);
+            }
+            P = P.getLigaD();
+        } while (P != Punta);
+    }
 
     public void Truncate() {
         this.Punta = null;
@@ -357,16 +397,32 @@ public class Lista {
     }
 
     public void ShowListDetails() {
-        String msj = this.Name + ": [ ";
+        String msj = Clr.BG_BL + "\n" + this.Name + ": [ ";
         Nodo P = this.Punta;
         if (Punta != null) {
             do {
-                msj += "{ " + BColors.BLUE + P.getLigaI() + BColors.RESET + " | " + P.getDato() + " | " + BColors.BLUE
-                        + P.getLigaD() + BColors.RESET + " }  => ";
+                msj += "{ " + Clr.BG_G + P.getLigaI() + Clr.BG_BL + " | " + Clr.BG_Y + " " + P.getDato() + " " + Clr.BG_BL + " | " + Clr.BG_G + P.getLigaD() + Clr.BG_BL + " }  => ";
                 P = P.getLigaD();
             } while (P != Punta);
         }
-        msj += " ]";
+        msj += " ]\n\n" + Clr.RT;
+        System.out.println(msj);
+    }
+
+    public void ShowDataDetails(int Dato) {
+        String msj = Clr.BG_BL + "\n" + this.Name + ": [ ";
+        Nodo P = this.Punta;
+        if (Punta != null) {
+            do {
+                if (P.getDato() == Dato) {
+                    msj+=Clr.BG_G+"{ " + P.getLigaI() + " | " + P.getDato() + " | " + P.getLigaD() + " }"+Clr.BG_BL+"  => ";
+                }else{
+                    msj += "{ " + P.getLigaI() + " | " + P.getDato() + " | " + P.getLigaD() + " }  => ";
+                }
+                P = P.getLigaD();
+            } while (P != Punta);
+        }
+        msj += " ]\n\n" + Clr.RT;
         System.out.println(msj);
     }
 
@@ -376,6 +432,20 @@ public class Lista {
         if (Punta != null) {
             do {
                 msj += "{ " + P.getDato() + " }  => ";
+                P = P.getLigaD();
+            } while (P != Punta);
+        }
+        msj += " ]";
+        JOptionPane.showMessageDialog(null, msj);
+    }
+    public void ShowData(int Dato) {
+        String msj = this.Name + ": [ ";
+        Nodo P = this.Punta;
+        if (Punta != null) {
+            do {
+                if(P.getDato()==Dato){
+                    msj += "{ " + P.getDato() + " }  => ";
+                }
                 P = P.getLigaD();
             } while (P != Punta);
         }
@@ -423,22 +493,19 @@ public class Lista {
         Nodo PS = S.getPunta();
         if (Punta != null) {
             do {
-                msj += "{ " + BColors.BLUE + P.getLigaI() + BColors.RESET + " | " + P.getDato() + " | " + BColors.BLUE
-                        + P.getLigaD() + BColors.RESET + " }  => ";
+                msj += "{ " + Clr.B + P.getLigaI() + Clr.RT + " | " + P.getDato() + " | " + Clr.B + P.getLigaD() + Clr.RT + " }  => ";
                 P = P.getLigaD();
             } while (P != Punta);
         }
         if (L.getPunta() != null) {
             do {
-                msjL += "{ " + BColors.BLUE + PL.getLigaI() + BColors.RESET + " | " + PL.getDato() + " | "
-                        + BColors.BLUE + PL.getLigaD() + BColors.RESET + " }  => ";
+                msjL += "{ " + Clr.B + PL.getLigaI() + Clr.RT + " | " + PL.getDato() + " | " + Clr.B + PL.getLigaD() + Clr.RT + " }  => ";
                 PL = PL.getLigaD();
             } while (PL != L.getPunta());
         }
         if (S.getPunta() != null) {
             do {
-                msjS += "{ " + BColors.BLUE + PS.getLigaI() + BColors.RESET + " | " + PS.getDato() + " | "
-                        + BColors.BLUE + PS.getLigaD() + BColors.RESET + " }  => ";
+                msjS += "{ " + Clr.B + PS.getLigaI() + Clr.RT + " | " + PS.getDato() + " | " + Clr.B + PS.getLigaD() + Clr.RT + " }  => ";
                 PS = PS.getLigaD();
             } while (PS != S.getPunta());
         }
@@ -468,6 +535,49 @@ public class Lista {
                         "</tr>" +
                         "</table>" +
                         "<div class=\"flecha\">&#8646;</div>";
+                P = P.getLigaD();
+            } while (P != Punta);
+        }
+        list += "</div>";
+        Html File = new Html();
+        File.AddBody(list);
+        File.Export(Name);
+    }
+
+    public void ShowDataHtml(int Dato) {
+        Nodo P = this.Punta;
+        String list = "<div class=\"container\">" +
+                "<div class=\"container-title\">" +
+                "<div class=\"title\">" + Name + "</div>" +
+                "<div class=\"text\">" + Method + "</div>" +
+                "</div>";
+        if (Punta != null) {
+            do {
+                if(P.getDato()==Dato) {
+                    list += "<table>" +
+                            "<tr>" +
+                            "<td class=\"transparent\">" + P + "</td>" +
+                            "</tr>" +
+                            "<tr>" +
+                            "<td class=\"green\">" + P.getLigaI() + "</td>" +
+                            "<td class=\"yellow\">" + P.getDato() + "</td>" +
+                            "<td class=\"green\">" + P.getLigaD() + "</td>" +
+                            "</tr>" +
+                            "</table>" +
+                            "<div class=\"flecha\">&#8646;</div>";
+                }else{
+                    list += "<table>" +
+                            "<tr>" +
+                            "<td class=\"transparent\">" + P + "</td>" +
+                            "</tr>" +
+                            "<tr>" +
+                            "<td class=\"white node\">" + P.getLigaI() + "</td>" +
+                            "<td class=\"white data\">" + P.getDato() + "</td>" +
+                            "<td class=\"white node\">" + P.getLigaD() + "</td>" +
+                            "</tr>" +
+                            "</table>" +
+                            "<div class=\"flecha\">&#8646;</div>";
+                }
                 P = P.getLigaD();
             } while (P != Punta);
         }
