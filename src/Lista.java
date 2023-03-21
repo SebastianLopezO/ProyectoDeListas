@@ -279,56 +279,10 @@ public class Lista {
         return cont;
     }
 
-    // Buscar
-
-    public void Shear(int Dato, Lista L) {
-
-        Nodo P = Punta;
-        if (this.Punta == null) {
-
-            System.out.println("La lista está vacía.");
-
-        } else {
-            P = Punta;
-            do {
-                if (P.getDato() == Dato) {
-                    System.out.println("El dato " + Dato + " se encuentra en la lista.");
-                } else {
-                    System.out.println("El dato " + Dato + " no se encuentra en la lista.");
-                }
-
-            } while (P != Punta);
-
-        }
-
-    }
-
-    public void Reemplazar(int Dato, Lista L) {
-        boolean flag = true;
-        int ValorB, Valor;
-        Nodo P = Punta;
-        ValorB = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese el dato que quiere buscar "));
-        while (P != null) {
-            if (P.getDato() == ValorB) {
-                Valor = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese el dato que desea reemplazar: "));
-                P.setDato(Valor);
-                flag = false;
-            }
-        }
-        if (flag == true) {
-            JOptionPane.showMessageDialog(null, "El dato no está en la lista.");
-        }
-    }
-
-    public void Delate(Lista L) {
-        int ValorB;
-        Nodo P = Punta, S, A;
-        ValorB = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese el dato que quiere eliminar "));
-        if (Punta == null) {
-            System.out.println("La lista está vacía.");
-        }
+    public void Delate(int Dato) {
+        Nodo P=Punta;
         do {
-            if (P.getDato() == ValorB) {
+            if (P.getDato() == Dato) {
                 if (P == Punta) {
                     Punta = P.getLigaD();
                 } else {
@@ -340,7 +294,6 @@ public class Lista {
             }
             P = P.getLigaD();
         } while (P != Punta);
-
     }
 
     //utilities
@@ -355,6 +308,9 @@ public class Lista {
                 }
                 P = P.getLigaD();
             } while (P != Punta && !find);
+        }else{
+            System.out.println("Lista Vacia.");
+            JOptionPane.showMessageDialog(null, "Lista Vacia.");
         }
         return find;
     }

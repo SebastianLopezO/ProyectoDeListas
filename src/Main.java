@@ -100,24 +100,24 @@ public class Main {
                         OptionSort = MenuSort(Option,L.Name);
                         switch (OptionSort) {
                             case "Ascendente":
-                                L.InsertAsc(GetNum());
+                                L.InsertAsc(GetNum("Insertar"));
                                 break;
                             case "Descendente":
-                                L.InsertDsc(GetNum());
+                                L.InsertDsc(GetNum("Insertar"));
                                 break;
                         }
                         L.Method = Option + " " + OptionSort;
                         break;
                     case "Insertar al Final":
                         L.Method = Option;
-                        L.InsertEnd(GetNum());
+                        L.InsertEnd(GetNum("Insertar"));
                         break;
                     case "Insertar al Inicio":
                         L.Method = Option;
-                        L.InsertBegin(GetNum());
+                        L.InsertBegin(GetNum("Insertar"));
                         break;
                     case "Buscar Dato":
-                        int Dato=GetNum();
+                        int Dato=GetNum("Buscar");
                         if(L.Include(Dato)){
                             OptionAct=MenuActions(L.Name,Dato);
                             switch (OptionAct){
@@ -125,7 +125,7 @@ public class Main {
                                     L.Delete(Dato);
                                     break;
                                 case "Reemplazar":
-                                    L.Replace(Dato,GetNum());
+                                    L.Replace(Dato,GetNum("Reemplazar por el Dato("+Dato+")"));
                                     break;
                                 case "Mostrar":
                                     OptionShow=MenuShow(L.Name);
@@ -137,7 +137,8 @@ public class Main {
                                     break;
                             }
                         }else{
-                            System.out.println("Elemento no encontrado");
+                            JOptionPane.showMessageDialog(null, "Elemento no encontrado.");
+                            System.out.println("Elemento no encontrado.");
                         }
                         break;
                     case "Ordenar Lista":
@@ -277,13 +278,14 @@ public class Main {
         return Option;
     }
 
-    public static int GetNum() {
+    public static int GetNum(String Option) {
         int num;
         while (true) {
             try {
-                num = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el Numero a Insertar: "));
+                num = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el Numero a "+Option+ ": "));
                 return num;
             } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(null, "No se ha insertado un numero.");
                 System.out.println("No ha insertado un numero, error" + ex);
             }
         }
