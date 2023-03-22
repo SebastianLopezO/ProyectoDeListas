@@ -279,23 +279,6 @@ public class Lista {
         return cont;
     }
 
-    public void Delate(int Dato) {
-        Nodo P = Punta;
-        do {
-            if (P.getDato() == Dato) {
-                if (P == Punta) {
-                    Punta = P.getLigaD();
-                } else {
-                    P.getLigaI().setLigaD(P.getLigaD());
-                }
-                if (P.getLigaD() != null) {
-                    P.getLigaD().setLigaI(P.getLigaI());
-                }
-            }
-            P = P.getLigaD();
-        } while (P != Punta);
-    }
-
     //utilities
 
     public Boolean Include(int Dato) {
