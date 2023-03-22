@@ -280,7 +280,7 @@ public class Lista {
     }
 
     public void Delate(int Dato) {
-        Nodo P=Punta;
+        Nodo P = Punta;
         do {
             if (P.getDato() == Dato) {
                 if (P == Punta) {
@@ -308,7 +308,7 @@ public class Lista {
                 }
                 P = P.getLigaD();
             } while (P != Punta && !find);
-        }else{
+        } else {
             System.out.println("Lista Vacia.");
             JOptionPane.showMessageDialog(null, "Lista Vacia.");
         }
@@ -317,18 +317,30 @@ public class Lista {
 
     public void Delete(int Dato) {
         Nodo P = Punta;
-        if (P.getLigaD() == Punta && P.getDato() == Dato) {
-            Truncate();
-        } else {
-            do {
-                if (P.getDato() == Dato) {
+        boolean chg=false;
+        do {
+            chg=false;
+            if (P.getDato() == Dato) {
+                if (Punta == Cola) {
+                    Truncate();
+                } else if (P == Punta) {
+                    Punta = P.getLigaD();
+                    Cola.setLigaD(Punta);
+                    Punta.setLigaI(Cola);
+                    chg=true;
+                } else if (P == Cola) {
+                    Cola = P.getLigaI();
+                    Punta.setLigaI(Cola);
+                    Cola.setLigaD(Punta);
+                } else {
                     (P.getLigaI()).setLigaD(P.getLigaD());
                     (P.getLigaD()).setLigaI(P.getLigaI());
-                    System.gc();
                 }
-                P = P.getLigaD();
-            } while (P != Punta);
-        }
+                System.gc();
+            }
+            P = P.getLigaD();
+        } while (chg || P != Punta && Punta!=null);
+
     }
 
     public void Replace(int Dato, int newDato) {
@@ -343,6 +355,8 @@ public class Lista {
 
     public void Truncate() {
         this.Punta = null;
+        this.Cola = null;
+        this.Method = "empty";
         System.gc();
     }
 
@@ -371,8 +385,8 @@ public class Lista {
         if (Punta != null) {
             do {
                 if (P.getDato() == Dato) {
-                    msj+=Clr.BG_G+"{ " + P.getLigaI() + " | " + P.getDato() + " | " + P.getLigaD() + " }"+Clr.BG_BL+"  => ";
-                }else{
+                    msj += Clr.BG_G + "{ " + P.getLigaI() + " | " + P.getDato() + " | " + P.getLigaD() + " }" + Clr.BG_BL + "  => ";
+                } else {
                     msj += "{ " + P.getLigaI() + " | " + P.getDato() + " | " + P.getLigaD() + " }  => ";
                 }
                 P = P.getLigaD();
@@ -394,12 +408,13 @@ public class Lista {
         msj += " ]";
         JOptionPane.showMessageDialog(null, msj);
     }
+
     public void ShowData(int Dato) {
         String msj = this.Name + ": [ ";
         Nodo P = this.Punta;
         if (Punta != null) {
             do {
-                if(P.getDato()==Dato){
+                if (P.getDato() == Dato) {
                     msj += "{ " + P.getDato() + " }  => ";
                 }
                 P = P.getLigaD();
@@ -509,7 +524,7 @@ public class Lista {
                 "</div>";
         if (Punta != null) {
             do {
-                if(P.getDato()==Dato) {
+                if (P.getDato() == Dato) {
                     list += "<table>" +
                             "<tr>" +
                             "<td class=\"transparent\">" + P + "</td>" +
@@ -521,7 +536,7 @@ public class Lista {
                             "</tr>" +
                             "</table>" +
                             "<div class=\"flecha\">&#8646;</div>";
-                }else{
+                } else {
                     list += "<table>" +
                             "<tr>" +
                             "<td class=\"transparent\">" + P + "</td>" +
