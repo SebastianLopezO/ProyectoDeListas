@@ -16,7 +16,7 @@ public class Main {
         Lista ListD = new Lista("ListD");
         Lista ListAns = new Lista("ListAns");
 
-        //Mapa
+        //Mapa de Variables
         Map<String, Lista> Variables = new HashMap<>();
         Variables.put("ListA", ListA);
         Variables.put("ListB", ListB);
