@@ -4,7 +4,7 @@ public class Lista {
     //Atributos
     private Nodo Punta;
     private Nodo Cola;
-    public String Name, Method;
+    public String Name, Method; //Atributos Extra para Impresion
 
     public Lista(String Name) {
         this.Punta = null;
@@ -347,7 +347,7 @@ public class Lista {
         this.Punta = null;
         this.Cola = null;
         this.Method = "empty";
-        System.gc();
+        System.gc(); //Llamar Recoletor
     }
 
     public void Swap(Nodo P, Nodo S) {
