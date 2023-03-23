@@ -251,6 +251,7 @@ public class Main {
         return Option;
     }
 
+    // Menú de operaciones 
     public static String[] MenuOpe() {
         JComboBox<String> Var1 = new JComboBox<>(new String[]{"ListA", "ListB", "ListC", "ListD"});
         JComboBox<String> Var2 = new JComboBox<>(new String[]{"ListA", "ListB", "ListC", "ListD"});
@@ -277,7 +278,8 @@ public class Main {
                 Options[0]);
         return Option;
     }
-
+    
+    //Método para obtener los valores 
     public static int GetNum(String Option) {
         int num;
         while (true) {
@@ -290,7 +292,7 @@ public class Main {
             }
         }
     }
-
+    
     public static void Export(Lista[] Elems) {
         //Archivo
         Html FileProyect = new Html();

@@ -49,15 +49,17 @@ public class Lista {
     }
 
     public void InsertBegin(int Dato) {
-        if (this.Punta == null) {
+        if (this.Punta == null) { 
+            //Insertar en medio cuando no existe lista
             Nodo X = new Nodo(Dato);
             X.setLigaI(X);
             X.setLigaD(X);
             Punta = X;
             Cola = X;
-        } else {
+        } else { 
+            //Insertar en medio cuando ya existe una lista
             Nodo X = new Nodo(Dato, Cola, Punta);
-            Punta.setLigaI(X);
+            Punta.setLigaI(X); 
             Cola.setLigaD(X);
             Punta = X;
         }
@@ -164,6 +166,7 @@ public class Lista {
                     PS = PS.getLigaD();
                 }
             }
+            //Realiza la operación:
             if (L.getPunta() != null || S.getPunta() != null) {
                 InsertEnd(DL + DS);
             }
@@ -241,6 +244,8 @@ public class Lista {
         do {
             DL = 0;
             DS = 0;
+
+            // Obtener Dígito de lista L
             if (PL != null) {
                 DL = PL.getDato();
                 if (PL.getLigaD() == L.getPunta()) {
@@ -250,6 +255,7 @@ public class Lista {
                 }
             }
 
+            // Obtener Dígito de lista S
             if (PS != null) {
                 DS = PS.getDato();
                 if (PS.getLigaD() == S.getPunta()) {
@@ -304,18 +310,19 @@ public class Lista {
         do {
             chg=false;
             if (P.getDato() == Dato) {
+                //Llama al método que elimina el nodo cuando apunta a si mismo osea que es cabeza y cola al mismo tiempo
                 if (Punta == Cola) {
-                    Truncate();
-                } else if (P == Punta) {
+                    Truncate(); 
+                } else if (P == Punta) { //Cuando el nodo a eliminar es el primero.
                     Punta = P.getLigaD();
                     Cola.setLigaD(Punta);
                     Punta.setLigaI(Cola);
                     chg=true;
-                } else if (P == Cola) {
+                } else if (P == Cola) { //Cuando el dato a eliminar es el último
                     Cola = P.getLigaI();
                     Punta.setLigaI(Cola);
                     Cola.setLigaD(Punta);
-                } else {
+                } else { //Cuando el dato se encuentra en medio
                     (P.getLigaI()).setLigaD(P.getLigaD());
                     (P.getLigaD()).setLigaI(P.getLigaI());
                 }
@@ -330,7 +337,7 @@ public class Lista {
         Nodo P = Punta;
         do {
             if (P.getDato() == Dato) {
-                P.setDato(newDato);
+                P.setDato(newDato); //se le asigna el nuevo dato a reemplazar
             }
             P = P.getLigaD();
         } while (P != Punta);

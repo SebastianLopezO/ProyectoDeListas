@@ -29,7 +29,7 @@ public class Html {
             bw.write(this.Head + this.Body);
             bw.close();
 
-            // Abrir archivo HTML en el navegador predeterminado
+            // Abrir el archivo HTML en el navegador predeterminado
             Desktop.getDesktop().browse(archivo.toURI());
         } catch (IOException e) {
             System.out.println("Error al Exportar resultado: " + e);
