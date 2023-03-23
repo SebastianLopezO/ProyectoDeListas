@@ -10,7 +10,7 @@ public class Nodo {
         this.LigaI = null;
         this.LigaD = null;
     }
-
+    //Sobrecarga de métodos
     public Nodo(int Dato, Nodo LigaI, Nodo LigaD) {
         this.Dato = Dato;
         this.LigaI = LigaI;
