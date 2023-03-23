@@ -15,5 +15,5 @@ public class Clr {
     public static final String BG_P = "\u001B[45m"; // Fondo morado (Background Purple)
     public static final String BG_C = "\u001B[46m"; // Fondo cyan (Background Cyan)
     public static final String BG_W = "\u001B[47m"; // Fondo blanco (Background White)
-    public static final String RT = "\u001B[0m"; //
+    public static final String RT = "\u001B[0m"; // Default
 }
