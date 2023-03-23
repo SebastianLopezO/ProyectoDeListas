@@ -9,6 +9,7 @@ public class Html {
     public String Body;
 
     public Html() {
+        //Head Estandar
         this.Head = "<head><title>Proyecto de Listas</title><link rel=\"stylesheet\" type=\"text/css\" href=\"style.css\"></head>";
         this.Body = "<body></body>";
     }
