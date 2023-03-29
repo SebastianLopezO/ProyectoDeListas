@@ -271,7 +271,13 @@ public class Lista {
             }
         } while (PL != null || PS != null);
     }
-
+    
+    public void Compare(int Dato){
+        System.out.println("Los numeros mayores que "+Dato+" son: "+GreaterThat(Dato));
+        System.out.println("Los numeros menores que "+Dato+" son: "+LessThat(Dato));
+        System.out.println("Los numeros iguales que "+Dato+" son: "+EqualThat(Dato));
+    } 
+    
     public int Length() {
         int cont = 0;
         if (Punta != null) {
@@ -286,7 +292,51 @@ public class Lista {
     }
 
     //utilities
+    
+    
+    public int GreaterThat(int Dato){
+        int cont = 0;
+        if (Punta != null) {
+            Nodo P = Punta;
+            do {
+                if(P.getDato()>Dato){
+                    cont++;
+                }
+                P = P.getLigaD();
+            } while (P != Punta);
+        }
+        return cont;
+    }
+    
+    public int LessThat(int Dato){
+        int cont = 0;
+        if (Punta != null) {
+            Nodo P = Punta;
+            do {
+                if(P.getDato()<Dato){
+                    cont++;
+                }
+                P = P.getLigaD();
+            } while (P != Punta);
+        }
+        return cont;
+    }
+    
+    public int EqualThat(int Dato){
+        int cont = 0;
+        if (Punta != null) {
+            Nodo P = Punta;
+            do {
+                if(P.getDato()==Dato){
+                    cont++;
+                }
+                P = P.getLigaD();
+            } while (P != Punta);
+        }
 
+        return cont;
+    }
+        
     public Boolean Include(int Dato) {
         boolean find = false;
         if (Punta != null) {
@@ -310,6 +360,35 @@ public class Lista {
         do {
             chg=false;
             if (P.getDato() == Dato) {
+                //Llama al método que elimina el nodo cuando apunta a si mismo osea que es cabeza y cola al mismo tiempo
+                if (Punta == Cola) {
+                    Truncate(); 
+                } else if (P == Punta) { //Cuando el nodo a eliminar es el primero.
+                    Punta = P.getLigaD();
+                    Cola.setLigaD(Punta);
+                    Punta.setLigaI(Cola);
+                    chg=true;
+                } else if (P == Cola) { //Cuando el dato a eliminar es el último
+                    Cola = P.getLigaI();
+                    Punta.setLigaI(Cola);
+                    Cola.setLigaD(Punta);
+                } else { //Cuando el dato se encuentra en medio
+                    (P.getLigaI()).setLigaD(P.getLigaD());
+                    (P.getLigaD()).setLigaI(P.getLigaI());
+                }
+                System.gc();
+            }
+            P = P.getLigaD();
+        } while (chg || P != Punta && Punta!=null);
+
+    }
+    
+    public void DeleteMult(int Multiple) {
+        Nodo P = Punta;
+        boolean chg=false;
+        do {
+            chg=false;
+            if (P.getDato()%Multiple==0) {
                 //Llama al método que elimina el nodo cuando apunta a si mismo osea que es cabeza y cola al mismo tiempo
                 if (Punta == Cola) {
                     Truncate(); 
